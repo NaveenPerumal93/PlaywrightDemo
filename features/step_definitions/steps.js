@@ -6,7 +6,7 @@ const playwright = require('@playwright/test')
 
 Given('login into e-commerce application with {string} and {string}', {timeout : 100*1000}, async function (email, password) {
     
-    const browser = await playwright.chromium.launch();
+    const browser = await playwright.chromium.launch({headless: false});
     const context = await browser.newContext();
     const page = await context.newPage();
 
@@ -28,8 +28,8 @@ Given('login into e-commerce application with {string} and {string}', {timeout :
     await basketpage.displayBasket(); 
   });
 
-  Then('enter the checkout details as {string}, {string}, {string}', async function () {
-    const checkoutPage = this.pomanager.getCheckoutPage(username,cvv,country);
+  Then('enter the checkout details as {string}, {string}, {string}', async function (username,cvv,country) {
+    const checkoutPage = this.pomanager.getCheckoutPage();
     await checkoutPage.enterCheckoutDetails(username,cvv,country);
   });
 

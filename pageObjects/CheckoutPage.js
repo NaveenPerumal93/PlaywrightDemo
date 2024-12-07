@@ -11,8 +11,9 @@ class CheckoutPage {
     this.placeOrderbutton = page.locator("text='Place Order '");
   }
 
-  async enterCheckoutDetails(cvv,name,country){
+  async enterCheckoutDetails(name,cvv,country){
 
+    await this.checkoutbutton.waitFor();
     await this.checkoutbutton.click();
 
     await this.cvvtext.fill(cvv);
